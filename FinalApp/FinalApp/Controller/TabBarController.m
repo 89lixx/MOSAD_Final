@@ -9,42 +9,76 @@
 #import <Foundation/Foundation.h>
 #import "TabBarController.h"
 #import "Calendar.h"
+#import "MyCalendar.h"
+#import "SettingViewController.h"
+#import "inBox.h"
 @interface TabBarController()
 @property(nonatomic, strong) Calendar * calendar;
-@property(nonatomic, strong) Calendar * calendar1;
-@property(nonatomic, strong) Calendar * calendar3;
+@property(nonatomic, strong) inBox * calendar1;
+@property(nonatomic, strong) SettingViewController * setting;
+@property(nonatomic, strong) NSArray * weekArr;
+@property(nonatomic, strong) UIColor * lightgray;
+@property(nonatomic, strong) UIColor * blue;
+@property(nonatomic, strong) MyCalendar * myCalendar;
 @end
 
 @implementation TabBarController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.title = @"Inbox";
     
+    self.calendar1 = [[inBox alloc] init];
+    self.calendar1.tabBarItem.title = @"task";
+    self.calendar1.tabBarItem.image = [[UIImage imageNamed:@"task.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.calendar1.tabBarItem.selectedImage =[[UIImage imageNamed:@"task1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self addChildViewController:self.calendar1];
+    
     self.calendar = [[Calendar alloc] init];
-    self.calendar.tabBarItem.title = @"task";
-//    self.calendar.tabBarItem.image = [[UIImage imageNamed:@"calendar3.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.calendar.tabBarItem.title = @"calendar";
+    self.calendar.tabBarItem.image = [[UIImage imageNamed:@"calendar.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.calendar.tabBarItem.selectedImage =[[UIImage imageNamed:@"calendar1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     [self addChildViewController:self.calendar];
     
-    self.calendar1 = [[Calendar alloc] init];
-    self.calendar1.tabBarItem.title = @"calendar";
-    [self addChildViewController:self.calendar1];
- 
-    self.calendar3 = [[Calendar alloc] init];
-    self.calendar3.tabBarItem.title = @"settings";
-    [self addChildViewController:self.calendar3];
-//    self.selectedIndex = 2;
+    self.setting = [[SettingViewController alloc] init];
+    self.setting.tabBarItem.title = @"settings";
+    self.setting.tabBarItem.image = [[UIImage imageNamed:@"settings.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.setting.tabBarItem.selectedImage =[[UIImage imageNamed:@"settings1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self addChildViewController:self.setting];
+
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    
+-(NSMutableDictionary*)splitActivity:(NSString *)string{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithCapacity:0];
+//    NSDictionary * dic = [[NSDictionary alloc] init];
+    NSArray * arr = [string componentsSeparatedByString:@"\n"];
+    NSLog(@"arr %@",arr);
+    for(NSInteger i = 0; i < arr.count; ++ i) {
+        NSArray * temp = [arr[i] componentsSeparatedByString:@":"];
+        NSArray * temp1 = [temp[1] componentsSeparatedByString:@","];
+        [dic setObject:temp1 forKey:temp[0]];
+    }
+    NSLog(@"dic %@",dic[@"20191225"]);
+    return dic;
 }
+
 
 //点击后不能直接改变selectedIndex
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
+    NSMutableDictionary * dic = [self splitActivity:self.setting.activity];
+    
     if([tabBar.selectedItem.title  isEqual: @"task"]) self.title = @"Inbox";
-    else if([tabBar.selectedItem.title  isEqual: @"calendar"]) self.title = @"Today";
+    else if([tabBar.selectedItem.title  isEqual: @"calendar"]) {
+        self.title = @"Today";
+        [self.calendar.activity removeAllObjects];
+        self.calendar.activity = dic;
+        self.calendar.name = self.setting.name;
+        self.calendar.pwd = self.setting.pwd;
+    }
     else if([tabBar.selectedItem.title  isEqual: @"settings"]) self.title = @"Settings";
 }
+
+
 
 @end

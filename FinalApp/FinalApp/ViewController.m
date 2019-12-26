@@ -8,8 +8,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
-
+@interface ViewController ()<UITextViewDelegate>
+@property(nonatomic, strong) UIButton * button;
+@property(nonatomic, strong) UITextView * commentText;
 @end
 
 @implementation ViewController
@@ -18,6 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 }
+
 
 
 @end
