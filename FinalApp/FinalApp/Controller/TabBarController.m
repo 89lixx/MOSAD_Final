@@ -51,6 +51,7 @@
 
 -(NSMutableDictionary*)splitActivity:(NSString *)string{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] initWithCapacity:0];
+    if(string.length == 0) return dic;
 //    NSDictionary * dic = [[NSDictionary alloc] init];
     NSArray * arr = [string componentsSeparatedByString:@"\n"];
     NSLog(@"arr %@",arr);

@@ -35,7 +35,6 @@
     self.activity = self.login.activity;
     self.name = self.login.username.text;
     self.pwd = self.login.password.text;
-    NSLog(@"%@",self.login.activity);
 //    [self.userView addSubview:self.username];
 }
 

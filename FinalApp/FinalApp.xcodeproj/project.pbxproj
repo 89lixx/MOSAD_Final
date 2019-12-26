@@ -37,6 +37,7 @@
 		B386471F23B46A4A00317595 /* user2.png in Resources */ = {isa = PBXBuildFile; fileRef = B386471E23B46A4A00317595 /* user2.png */; };
 		B386472123B46A8200317595 /* English.png in Resources */ = {isa = PBXBuildFile; fileRef = B386472023B46A8200317595 /* English.png */; };
 		B386472323B46DBB00317595 /* myAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B386472223B46DBB00317595 /* myAPI.m */; };
+		B386472623B4B3AD00317595 /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = B386472523B4B3AC00317595 /* test.png */; };
 		CEA5743423B3A8680086BBD3 /* inBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA5743323B3A8680086BBD3 /* inBox.m */; };
 		CEA5744023B3AB6F0086BBD3 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743623B3AB6F0086BBD3 /* home.png */; };
 		CEA5744123B3AB6F0086BBD3 /* document.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743723B3AB6F0086BBD3 /* document.png */; };
@@ -119,6 +120,7 @@
 		B386472023B46A8200317595 /* English.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = English.png; sourceTree = "<group>"; };
 		B386472223B46DBB00317595 /* myAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myAPI.m; sourceTree = "<group>"; };
 		B386472423B46DC700317595 /* myAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myAPI.h; sourceTree = "<group>"; };
+		B386472523B4B3AC00317595 /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		CEA5743323B3A8680086BBD3 /* inBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inBox.m; sourceTree = "<group>"; };
 		CEA5743523B3A8820086BBD3 /* inBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inBox.h; sourceTree = "<group>"; };
 		CEA5743623B3AB6F0086BBD3 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
@@ -259,6 +261,7 @@
 		B38646C123ACB66B00317595 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				B386472523B4B3AC00317595 /* test.png */,
 				B386472023B46A8200317595 /* English.png */,
 				B386471E23B46A4A00317595 /* user2.png */,
 				CEA5743D23B3AB6F0086BBD3 /* book.png */,
@@ -425,6 +428,7 @@
 				B386470D23B3A56A00317595 /* settings.png in Resources */,
 				B386472123B46A8200317595 /* English.png in Resources */,
 				CEA5744823B3AB6F0086BBD3 /* lock.png in Resources */,
+				B386472623B4B3AD00317595 /* test.png in Resources */,
 				B386470A23B3A56A00317595 /* send.png in Resources */,
 				B386471F23B46A4A00317595 /* user2.png in Resources */,
 				B386470C23B3A56A00317595 /* calendar_small.png in Resources */,
