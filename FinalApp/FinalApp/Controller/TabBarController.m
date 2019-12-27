@@ -84,6 +84,16 @@
         self.inbox.pwd = self.setting.pwd;
         self.inbox.name = self.setting.name;
     }
+    else if(!self.setting.signIn)
+    {
+        self.activityDic = [[NSMutableDictionary alloc] init];
+        self.calendar.name = @"UserName";
+        self.calendar.pwd = nil;
+        self.inbox.activity = [[NSMutableDictionary alloc] init];
+        self.calendar.activity = [[NSMutableDictionary alloc] init];
+        self.inbox.pwd = nil;
+        self.inbox.name = @"UserName";
+    }
     if([tabBar.selectedItem.title  isEqual: @"task"]) {
         self.title = @"Inbox";
     }
