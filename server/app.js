@@ -168,6 +168,7 @@ app.post('/addActivity',function(req,res){
     name =  temp.name
     pwd = temp.pwd
     date = temp.date
+    console.info('date  ',date)
     activity = temp.activity
 
     filename = './data/'+name+' '+pwd+'.txt'
@@ -216,8 +217,14 @@ app.post('/addActivity',function(req,res){
 })
 
 app.post('/delActivity',function(req,res){
-
-    temp = req.body
+    let data = req.body
+    let temp2 = {}
+    for(let item in data){
+        temp2 = item
+    }
+    temp2 = JSON.parse(temp2)
+    // temp = req.body
+    temp = temp2
     name =  temp.name
     pwd = temp.pwd
     date = temp.date

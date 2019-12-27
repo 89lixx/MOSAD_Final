@@ -16,6 +16,7 @@
 @property (nonatomic, strong) LoginViewController * login;
 @property (nonatomic, strong) SignupViewController * signup;
 @property (nonatomic, strong) UILabel* username;
+@property (nonatomic, strong) NSString * lastName;
 @end
 
 @implementation SettingViewController
@@ -24,17 +25,49 @@
     [self settingNav];
 //    [self.view addSubview:self.userView];
     
-    
+    self.signIn = NO;
     [self.view addSubview:self.tableView];
 }
+-(NSMutableDictionary*)splitActivity:(NSString *)string{
+    NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
+    if(string.length == 0) return dic;
+    //    NSDictionary * dic = [[NSDictionary alloc] init];
+    NSArray * arr = [string componentsSeparatedByString:@"\n"];
+//    NSLog(@"arr %@",arr);
+    for(NSInteger i = 0; i < arr.count; ++ i) {
+        NSArray * temp = [arr[i] componentsSeparatedByString:@":"];
+        NSArray * temp1 = [temp[1] componentsSeparatedByString:@","];
+        [dic setObject:temp1 forKey:temp[0]];
+    }
+    return dic;
+}
 - (void)viewDidAppear:(BOOL)animated{
-    
     NSLog(@"load view");
-    if(self.login.username.text.length != 0) self.username.text = self.login.username.text;
-    if(self.signup.username.text.length != 0) self.username.text = self.signup.username.text;
-    self.activity = self.login.activity;
-    self.name = self.login.username.text;
-    self.pwd = self.login.password.text;
+    if(self.login.username.text.length != 0) {
+        if(self.username.text.length == 0) {
+            self.username.text = self.login.username.text;
+            self.signIn = YES;
+            self.activity = self.login.activity;
+            self.name = self.login.username.text;
+            self.pwd = self.login.password.text;
+        }
+        else {
+            if([self.username.text isEqualToString:self.login.username.text]){
+                self.signIn = NO;
+            }
+            else {
+                self.username.text = self.login.username.text;
+                self.signIn = YES;
+                self.activity = self.login.activity;
+                self.name = self.login.username.text;
+                self.pwd = self.login.password.text;
+            }
+        }
+    }
+    
+    
+    
+    
 //    [self.userView addSubview:self.username];
 }
 

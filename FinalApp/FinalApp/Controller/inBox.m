@@ -8,131 +8,172 @@
 #import <Foundation/Foundation.h>
 #import "inBox.h"
 @interface inBox()<UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
-@property (nonatomic, strong) UITableView * tableView;
-@property(nonatomic, strong)UIColor * blue;
+@property(nonatomic, strong) UITableView * tableView;
+@property(nonatomic, strong) UIColor * blue;
 @property(nonatomic, strong) UIColor * lightgray;
 @property(nonatomic, strong) UIColor * lightblue;
-@property(nonatomic, strong) NSMutableArray * plans;
-@property(nonatomic, strong) NSMutableArray * dates;
-@property(nonatomic, assign) NSInteger dateNum;
-@property(nonatomic, assign) NSInteger actNum;
-@property(nonatomic, assign) BOOL judgeData;
+@property(nonatomic, strong) NSArray * plans;
+@property(nonatomic, strong) NSArray * dates;
+@property(nonatomic, strong) UIImageView * imageView;
+@property(nonatomic, assign) BOOL flag;
+@property(nonatomic, strong) NSString * response;
 @end
 
 @implementation inBox
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.flag = NO;
+    self.del = NO;
+    self.activity = [[NSMutableDictionary alloc] init];
     self.blue = [UIColor colorWithRed:86.0/255 green:129.0/255 blue:236.0/255 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = self.blue;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
     self.lightgray = [UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1.0];
     self.lightblue = [UIColor colorWithRed:222.0/255 green:229.0/255 blue:251.0/255 alpha:1.0];
-    self.dateNum = 2;
-    self.dates = [[NSMutableArray alloc] init];
-    self.plans = [[NSMutableArray alloc] init];
-    self.judgeData = false;
-//    NSMutableArray * activites1 = [[NSMutableArray alloc] init];
-//    [activites1 addObject:@"2019-12-25"];
-//    [activites1 addObject:@"aaa"];
-//    [activites1 addObject:@"bbb"];
-//    [activites1 addObject:@"ccc"];
-//
-//    NSMutableArray * activites2 = [[NSMutableArray alloc] init];
-//    [activites2 addObject:@"2019-12-26"];
-//    [activites2 addObject:@"ddd"];
-//    [activites2 addObject:@"ccc"];
-//    [activites2 addObject:@"fff"];
-//    [activites2 addObject:@"eee"];
-//
-//    [_dates addObject:activites1];
-//    [_dates addObject:activites2];
-//
+    
     self.view.backgroundColor = self.lightgray;
     [self.view addSubview:self.tableView];
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    if(!self.flag){
+        [self.view addSubview:self.imageView];
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    NSLog(@"name %@",self.name);
+    if(self.name.length != 0) {
+        NSLog(@"name %@",self.name);
+        NSLog(@"pwd %@",self.pwd);
+        self.flag = YES;
+        NSArray *arr = [self.activity allKeys];
+        self.dates = [arr sortedArrayWithOptions:NSSortStable usingComparator:
+        ^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    int value1 = [obj1 intValue];
+                    int value2 = [obj2 intValue];
+                    if (value1 > value2) {
+                        return NSOrderedDescending;
+                    }
+                    else{
+                        return NSOrderedAscending;
+                    }
+        }];
+        self.view.backgroundColor = self.lightgray;
+        
+        [self.imageView removeFromSuperview];
+        [self.tableView reloadData];
+    }
+}
+
+- (UIImageView *)imageView{
+    if(!_imageView){
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+        _imageView.image = [UIImage imageNamed:@"test.png"];
+    }
+    return _imageView;
+}
+
 - (UITableView *)tableView{
     if(_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 690) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        if(_judgeData)
-        {
-            _tableView.backgroundColor = _lightgray;
-        }
-        else
-        {
-            _tableView.backgroundColor = [UIColor colorWithRed:255.0/255 green:255.0/255 blue:255.0/255 alpha:1.0];
-        }
+        
         [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
     }
     
     return _tableView;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return self.dates.count;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+//    UIView * myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 10)];
+//    myView.backgroundColor = self.lightblue;
+    NSString * year = [self.dates[section] substringToIndex:4];
+    NSString * temp = [self.dates[section] substringFromIndex:4];
+    NSString * month = [temp substringToIndex:2];
+    NSString * day = [temp substringFromIndex:2];
+//    NSString * day = self.dates[section];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 20)];
+    label.text = [NSString stringWithFormat:@"  %@年%@月%@日",year,month,day];
+    label.textColor = [UIColor grayColor];
+    label.font = [UIFont systemFontOfSize:17];
+//    label.textAlignment = NSTextAlignmentCenter;
+                                                                
+    label.backgroundColor = self.lightblue;
+    return label;
+}
 
+//是否允许编辑
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+//编辑样式(删除)
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return UITableViewCellEditingStyleDelete;
+}
+
+#pragma mark 侧滑出现更多按钮 按钮可以加很多个 在按钮的block回调里面处理事件就好了
+-(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        //1.更新数据
+        NSMutableArray * arr = [self.activity objectForKey:self.dates[indexPath.section]];
+        NSString * ac = arr[indexPath.row];
+        [arr removeObjectAtIndex:indexPath.row];
+        [self.activity setObject:arr forKey:self.dates[indexPath.section]];
+        //2.更新UI
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        //3.更新后端
+        dispatch_group_t group = dispatch_group_create();
+        dispatch_group_enter(group);
+        
+        NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
+        NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
+        NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/delActivity"];
+        NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
+        [urlRequest setHTTPMethod:@"POST"];
+        
+        // 设置请求体为JSON
+        
+        NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.name,@"name",self.pwd,@"pwd",self.dates[indexPath.section],@"date", ac,@"activity", nil];
+        NSError *error = nil;
+        NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [urlRequest setHTTPBody:[jsonString dataUsingEncoding:NSUTF8StringEncoding]];
+        NSURLSessionDataTask * dataTask = [delegateFreeSession dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse * response, NSError * error){
+            if(error == nil) {
+                self.response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+                NSLog(@"response %@",self.response);
+                
+            }
+            dispatch_group_leave(group);
+        }];
+        [dataTask resume];
+    }];
+    self.del = YES;
+    return @[deleteRowAction];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return self.dates[section];
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSInteger num = 1;
-    if(_judgeData)
-    {
-        num = [self.dates[section] count];
-    }
-    return num;
+    NSArray * arr = [self.activity objectForKey:self.dates[section]];
+    return arr.count;
 }
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSInteger num = 1;
-    if([self.dates count] != 0)
-    {
-        _judgeData = true;
-        num = [self.dates count];
-    }
-    return num;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSInteger num = 55;
-    if(_judgeData){
-        if (indexPath.row == 0) {
-            num = 30;
-        }
-        else
-        {
-            num = 55;
-        }
-    }
-    else
-    {
-        num = 300;
-    }
-    return num;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView
-    cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    if(_judgeData)
-    {
-        if (indexPath.row == 0) {
-            cell.textLabel.text = self.dates[indexPath.section][0];
-            cell.textLabel.font = [UIFont systemFontOfSize:14];
-            cell.backgroundColor = [UIColor colorWithRed:222.0/255 green:229.0/255 blue:251.0/255 alpha:1.0];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-        }
-        else
-        {
-            cell.textLabel.text = self.dates[indexPath.section][indexPath.row];
-        }
-    }
-    else
-    {
-        cell.imageView.image = [UIImage imageNamed:@"test.png"];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    }
+    NSArray * arr = [self.activity objectForKey:self.dates[indexPath.section]];
+    cell.textLabel.text = arr[indexPath.row];
     return cell;
 }
+
 
 @end

@@ -25,7 +25,7 @@
 @property(nonatomic, strong) UIButton * plusButton;
 @property(nonatomic, strong) UITextView * commentText;
 @property(nonatomic, strong) UILabel * placeholder;
-
+@property(nonatomic, strong) NSString * dateString;
 //日历格子部分
 @property(nonatomic, strong) GridCalendar * gridCalendar;
 @property(nonatomic, strong) NSString * response;
@@ -37,7 +37,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edit = NO;
-    self.activity = [[NSMutableDictionary alloc] initWithCapacity:0];
+    self.activity = [[NSMutableDictionary alloc] init];
     self.blue = [UIColor colorWithRed:86.0/255 green:129.0/255 blue:236.0/255 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = self.blue;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
@@ -46,11 +46,8 @@
     self.view.backgroundColor = self.lightgray;
     self.weekArr = @[@"S",@"M",@"T",@"W",@"T",@"F",@"S"];
     self.plans = [[NSMutableArray alloc] init];
-//    [_plans addObject:@"打篮球"];
-//    [_plans addObject:@"写作业"];
-//    [_plans addObject:@"看直播"];
+    
     self.myCalendar = [[MyCalendar alloc] init];
-
     //搭起UI
     [self setStableWeek];
     [self setMoveableWeek];
@@ -69,17 +66,17 @@
     [self.view addGestureRecognizer:tapGestureRecognizer];
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-    [self.plans removeAllObjects];
-    NSString * string = [NSString stringWithFormat:@"%ld%ld%ld",self.myCalendar.nowTime.year,self.myCalendar.nowTime.month,self.myCalendar.nowTime.day];
-    NSLog(@"all acti %@",self.activity);
+- (void)viewWillAppear:(BOOL)animated{
+    //[self.plans removeAllObjects];
+    self.plans = [[NSMutableArray alloc] init];
+     self.dateString = [NSString stringWithFormat:@"%ld%ld%ld",self.myCalendar.nowTime.year,self.myCalendar.nowTime.month,self.myCalendar.nowTime.day];
     NSArray * keys = [self.activity allKeys];
     for(NSInteger i = 0; i < keys.count; ++ i) {
-        NSArray * temp1 = [self.activity objectForKey:keys[i]];
-        NSLog(@"testtt %@",temp1);
-        if([keys[i] isEqualToString:string]){
+//
+        if([keys[i] isEqualToString:self.dateString]){
+//            NSLog(@"第二次 %@",self.activity);
             NSArray * temp = [self.activity objectForKey:keys[i]];
-            NSLog(@"all %@",temp);
+//            NSLog(@"temp %@",temp);
             for(NSInteger i = 0; i < temp.count; ++ i) {
                 [self.plans addObject:temp[i]];
             }
@@ -357,7 +354,7 @@
     NSArray * res = _gridCalendar.getSelectedDate;
     NSLog(@"%ld",[res[0] integerValue]);
     NSLog(@"send mes %@  %@",_commentText.text,_gridCalendar.getSelectedDate);
-    
+    if(res[2] == 0) return;
     [_commentText resignFirstResponder];
     if(self.gridCalendar.frame.origin.y != -350){
         [UIView animateWithDuration:0.5 animations:^{
@@ -371,22 +368,22 @@
         NSInteger int1 = [res[0] integerValue];
         NSInteger int2 = [res[1] integerValue];
         NSInteger int3 = [res[2] integerValue];
-        
+
         //待哦用API将计划加入到后端
-        NSString * date =[NSString stringWithFormat:@"%ld%ld%ld",int1,int2,int3];
+        NSString * date =[NSString stringWithFormat:@"%@%@%@",res[0],res[1],res[2]];
         NSString * name = self.name;
         NSString * pwd = self.pwd;
         dispatch_group_t group = dispatch_group_create();
         dispatch_group_enter(group);
-        
+
         NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
         NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/addActivity"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod:@"POST"];
-        
+
         // 设置请求体为JSON
-        
+
         NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:name,@"name",pwd,@"pwd",date,@"date",self.commentText.text,@"activity", nil];
         NSError *error = nil;
         NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
@@ -396,7 +393,7 @@
             if(error == nil) {
                 self.response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSLog(@"ssss %@",self.response);
-                
+
             }
             dispatch_group_leave(group);
         }];
@@ -404,12 +401,11 @@
         dispatch_group_notify(group, dispatch_get_main_queue(), ^{
             if(self.myCalendar.nowTime.year == int1 && self.myCalendar.nowTime.month == int2 && self.myCalendar.nowTime.day == int3){
                 [self.plans addObject:self.commentText.text];
+                [self.activity setObject:self.plans forKey:self.dateString];
                 self.edit = YES;
                 [self.tableView reloadData];
             }
         });
-        
-        
     }
 }
 #pragma mark 打开日历
@@ -428,4 +424,5 @@
         NSLog(@" %f", self.gridCalendar.frame.origin.y);
     }];
 }
+
 @end

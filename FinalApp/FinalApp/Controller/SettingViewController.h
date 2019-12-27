@@ -11,9 +11,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SettingViewController : UIViewController
-@property (nonatomic,strong) NSString * activity;
 @property(nonatomic, strong) NSString * name;
 @property(nonatomic, strong) NSString * pwd;
+@property(nonatomic, assign) BOOL signIn;
+@property (nonatomic,strong) NSString * activity;
 @end
 
 #endif /* Setting_h */

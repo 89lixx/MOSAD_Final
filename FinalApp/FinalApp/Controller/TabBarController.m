@@ -14,12 +14,13 @@
 #import "inBox.h"
 @interface TabBarController()
 @property(nonatomic, strong) Calendar * calendar;
-@property(nonatomic, strong) inBox * calendar1;
+@property(nonatomic, strong) inBox * inbox;
 @property(nonatomic, strong) SettingViewController * setting;
 @property(nonatomic, strong) NSArray * weekArr;
 @property(nonatomic, strong) UIColor * lightgray;
 @property(nonatomic, strong) UIColor * blue;
 @property(nonatomic, strong) MyCalendar * myCalendar;
+@property (nonatomic, assign) BOOL isLoad;
 @end
 
 @implementation TabBarController
@@ -28,12 +29,12 @@
     [super viewDidLoad];
     
     self.title = @"Inbox";
-    
-    self.calendar1 = [[inBox alloc] init];
-    self.calendar1.tabBarItem.title = @"task";
-    self.calendar1.tabBarItem.image = [[UIImage imageNamed:@"task.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    self.calendar1.tabBarItem.selectedImage =[[UIImage imageNamed:@"task1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [self addChildViewController:self.calendar1];
+    self.isLoad = YES;
+    self.inbox = [[inBox alloc] init];
+    self.inbox.tabBarItem.title = @"task";
+    self.inbox.tabBarItem.image = [[UIImage imageNamed:@"task.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    self.inbox.tabBarItem.selectedImage =[[UIImage imageNamed:@"task1.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    [self addChildViewController:self.inbox];
     
     self.calendar = [[Calendar alloc] init];
     self.calendar.tabBarItem.title = @"calendar";
@@ -60,24 +61,42 @@
         NSArray * temp1 = [temp[1] componentsSeparatedByString:@","];
         [dic setObject:temp1 forKey:temp[0]];
     }
-    NSLog(@"dic %@",dic[@"20191225"]);
     return dic;
 }
 
-
+-(NSMutableDictionary*)getDic:(NSMutableDictionary*)dic{
+    NSMutableDictionary * res = [[NSMutableDictionary alloc] init];
+    res = dic;
+    return res;
+}
 //点击后不能直接改变selectedIndex
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
-    NSMutableDictionary * dic = [self splitActivity:self.setting.activity];
-    
-    if([tabBar.selectedItem.title  isEqual: @"task"]) self.title = @"Inbox";
-    else if([tabBar.selectedItem.title  isEqual: @"calendar"]) {
-        self.title = @"Today";
-        [self.calendar.activity removeAllObjects];
-        self.calendar.activity = dic;
+    //更新数据
+    if(self.setting.signIn && self.isLoad)
+    {
+        self.activityDic = [self splitActivity:self.setting.activity];
         self.calendar.name = self.setting.name;
         self.calendar.pwd = self.setting.pwd;
+        self.inbox.activity = self.activityDic;
+        self.calendar.activity = self.activityDic;
+        self.inbox.pwd = self.setting.pwd;
+        self.inbox.name = self.setting.name;
+        self.isLoad = NO;
     }
-    else if([tabBar.selectedItem.title  isEqual: @"settings"]) self.title = @"Settings";
+    if([tabBar.selectedItem.title  isEqual: @"task"]) {
+        self.title = @"Inbox";
+        //self.activityDic = [self splitActivity:self.setting.activity];
+        //self.inbox.activity = self.activityDic;
+    }
+    else if([tabBar.selectedItem.title  isEqual: @"calendar"]) {
+        self.title = @"Today";
+        //self.calendar.activity = self.activityDic;
+    }
+    else if([tabBar.selectedItem.title  isEqual: @"settings"]) {
+        self.title = @"Settings";
+        //[self.calendar.activity removeAllObjects];
+        //self.calendar.activity = self.activityDic;
+    }
 }
 
 

@@ -207,6 +207,14 @@
 - (NSArray *)getSelectedDate{
     NSString * year1 = [NSString stringWithFormat:@"%ld",self.myCalendar.year];
     NSString * month1 = [NSString stringWithFormat:@"%ld",self.myCalendar.month];
+    if(self.selectedDate.length == 1){
+        NSString * string = [NSString stringWithFormat:@"0%@",self.selectedDate];
+        self.selectedDate = string;
+    }
+    if(month1.length == 1){
+        NSString * string = [NSString stringWithFormat:@"0%@",month1];
+        month1 = string;
+    }
     NSArray * temp = @[year1,month1, self.selectedDate];
     return temp;
 }

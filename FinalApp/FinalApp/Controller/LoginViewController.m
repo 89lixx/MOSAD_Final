@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UIButton* button;
 @property (nonatomic, strong) UIButton* button2;
 @property (nonatomic, strong) SignupViewController * singnUp;
-@property (nonatomic, strong) myAPI * myapi;
 @end
 
 
@@ -31,7 +30,6 @@
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:97.0/255 green:127.0/255 blue:222.0/255 alpha:1]];
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
-    self.myapi = [[myAPI alloc] init];
     float itemSize = 90;
     UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 0, itemSize, itemSize)];
     [img setImage:[UIImage imageNamed:@"English.png"]];
@@ -153,6 +151,7 @@
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     });
+    
 }
 
 -(void)registerClick:(UIButton*)btn{

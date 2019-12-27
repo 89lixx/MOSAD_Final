@@ -10,6 +10,6 @@
 #define TabBarController_h
 #import <UIKit/UIKit.h>
 @interface TabBarController : UITabBarController<UITabBarDelegate>
-
+@property(nonatomic, strong) NSMutableDictionary * activityDic;
 @end
 #endif /* TabBarController_h */
