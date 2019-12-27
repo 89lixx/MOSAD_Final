@@ -53,10 +53,8 @@
     if(string.length == 0) return dic;
 //    NSDictionary * dic = [[NSDictionary alloc] init];
     NSArray * arr = [string componentsSeparatedByString:@"\n"];
-    NSLog(@"arr %@",arr);
     for(NSInteger i = 0; i < arr.count; ++ i) {
         NSArray * temp = [arr[i] componentsSeparatedByString:@":"];
-        NSLog(@"2323 %@", temp);
         NSArray * temp1 = [temp[1] componentsSeparatedByString:@","];
         [dic setObject:temp1 forKey:temp[0]];
     }

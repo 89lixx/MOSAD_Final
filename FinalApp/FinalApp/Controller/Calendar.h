@@ -14,7 +14,6 @@
 
 @interface Calendar : UIViewController
 @property(nonatomic, strong)NSMutableDictionary * activity;
-@property(nonatomic, assign)BOOL edit;
 @property(nonatomic, strong)NSString * name;
 @property(nonatomic, strong)NSString * pwd;
 @end

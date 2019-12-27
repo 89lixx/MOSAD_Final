@@ -14,6 +14,8 @@
 @property(nonatomic, strong) UIColor * lightblue;
 @property(nonatomic, strong) NSArray * plans;
 @property(nonatomic, strong) NSArray * dates;
+@property(nonatomic, strong) UILabel * delLabel;
+@property(nonatomic, assign) NSInteger num;
 @property(nonatomic, strong) UIImageView * imageView;
 @property(nonatomic, assign) BOOL flag;
 @property(nonatomic, strong) NSString * response;
@@ -43,10 +45,9 @@
     }
     NSLog(@"name %@",self.name);
     if(self.name.length != 0) {
-        NSLog(@"name %@",self.name);
-        NSLog(@"pwd %@",self.pwd);
         self.flag = YES;
         NSArray *arr = [self.activity allKeys];
+        
         self.dates = [arr sortedArrayWithOptions:NSSortStable usingComparator:
         ^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                     int value1 = [obj1 intValue];
@@ -100,9 +101,14 @@
     label.text = [NSString stringWithFormat:@"  %@年%@月%@日",year,month,day];
     label.textColor = [UIColor grayColor];
     label.font = [UIFont systemFontOfSize:17];
-
+    
                                                                 
     label.backgroundColor = self.lightblue;
+    
+    if(section == _num)
+    {
+        self.delLabel = label;
+    }
     return label;
 }
 
@@ -111,7 +117,6 @@
 {
     return YES;
 }
-
 //编辑样式(删除)
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -125,9 +130,15 @@
         //1.更新数据
         NSMutableArray * arr = [self.activity objectForKey:self.dates[indexPath.section]];
         NSString * ac = arr[indexPath.row];
-        [arr removeObjectAtIndex:indexPath.row];
+        if(arr.count > 1)
+        {
+            [arr removeObjectAtIndex:indexPath.row];
+        }
+        else
+        {
+            arr = [[NSMutableArray alloc]init];
+        }
         [self.activity setObject:arr forKey:self.dates[indexPath.section]];
-        
         //2.更新UI
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         //3.更新后端
@@ -136,7 +147,7 @@
         
         NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSURL * url = [NSURL URLWithString:@"http://172.18.176.201:3000/delActivity"];
+        NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/delActivity"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod:@"POST"];
         
@@ -153,6 +164,7 @@
             dispatch_group_leave(group);
         }];
         [dataTask resume];
+        
     }];
     self.del = YES;
     return @[deleteRowAction];

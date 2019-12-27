@@ -36,7 +36,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.edit = NO;
     self.activity = [[NSMutableDictionary alloc] init];
     self.blue = [UIColor colorWithRed:86.0/255 green:129.0/255 blue:236.0/255 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = self.blue;
@@ -69,7 +68,7 @@
 - (void)viewWillAppear:(BOOL)animated{
     //[self.plans removeAllObjects];
     self.plans = [[NSMutableArray alloc] init];
-     self.dateString = [NSString stringWithFormat:@"%ld%ld%ld",self.myCalendar.nowTime.year,self.myCalendar.nowTime.month,self.myCalendar.nowTime.day];
+    self.dateString = [NSString stringWithFormat:@"%ld%ld%ld",self.myCalendar.nowTime.year,self.myCalendar.nowTime.month,self.myCalendar.nowTime.day];
     NSArray * keys = [self.activity allKeys];
     for(NSInteger i = 0; i < keys.count; ++ i) {
 //
@@ -388,7 +387,7 @@
 
         NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSURL * url = [NSURL URLWithString:@"http://172.18.176.201:3000/addActivity"];
+        NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/addActivity"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod:@"POST"];
 
@@ -412,8 +411,22 @@
             if(self.myCalendar.nowTime.year == int1 && self.myCalendar.nowTime.month == int2 && self.myCalendar.nowTime.day == int3){
                 [self.plans addObject:self.commentText.text];
                 [self.activity setObject:self.plans forKey:self.dateString];
-                self.edit = YES;
                 [self.tableView reloadData];
+            }
+            else
+            {
+                NSMutableArray *t = [[NSMutableArray alloc] init];
+                NSArray * keys = [self.activity allKeys];
+                for(NSInteger i = 0; i < keys.count; ++ i) {
+                    if([keys[i] isEqualToString:date]){
+                        NSArray * temp = [self.activity objectForKey:keys[i]];
+                        for(NSInteger i = 0; i < temp.count; ++ i) {
+                            [t addObject:temp[i]];
+                        }
+                    }
+                }
+                [t addObject:self.commentText.text];
+                [self.activity setObject:t forKey:date];
             }
         });
     }
