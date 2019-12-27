@@ -31,7 +31,7 @@
     [self.navigationController.navigationBar setBarStyle:UIBarStyleBlack];
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     float itemSize = 90;
-    UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 0, itemSize, itemSize)];
+    UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 30, itemSize, itemSize)];
     [img setImage:[UIImage imageNamed:@"English.png"]];
     [img.layer setMasksToBounds:YES];
     [img.layer setCornerRadius:img.frame.size.height/2];

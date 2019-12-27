@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SettingViewController.h"
+#import "TabBarController.h"
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 @interface SettingViewController() <UITableViewDelegate, UITableViewDataSource>
@@ -27,6 +28,7 @@
     
     self.signIn = NO;
     [self.view addSubview:self.tableView];
+    [self.tableView reloadData];
 }
 -(NSMutableDictionary*)splitActivity:(NSString *)string{
     NSMutableDictionary * dic = [[NSMutableDictionary alloc] init];
@@ -64,7 +66,7 @@
             }
         }
     }
-    
+    NSLog(@"current user:%@.", self.username.text);
     
     
     
@@ -128,10 +130,10 @@
             i = 2;
             break;
         case 1:
-            i = 3;
+            i = 1;
             break;
         case 2:
-            i = 4;
+            i = 3;
             break;
     }
     return i;
@@ -171,11 +173,16 @@
             [cell.contentView addSubview:self.userView];
         }
         else {
-            
-            [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
-            [cell.textLabel setText:@"登录"];
             [cell.textLabel setFont:[UIFont systemFontOfSize:21]];
-            [cell.textLabel setTextColor:[UIColor blueColor]];
+            [cell.textLabel setTextAlignment:NSTextAlignmentCenter];
+            if ([self.username.text isEqualToString:@"Username"]) {
+                [cell.textLabel setText:@"Log in"];
+                [cell.textLabel setTextColor:[UIColor blueColor]];
+            }
+            else {
+                [cell.textLabel setText:@"Log Out"];
+                [cell.textLabel setTextColor:[UIColor redColor]];
+            }
         }
         return cell;
     }
@@ -183,16 +190,8 @@
     if (indexPath.section == 1) {
         switch(indexPath.row) {
             case 0:
-                [cell.imageView setImage:[UIImage imageNamed:@"home.png"]];
-                [cell.textLabel setText:@"Theme"];
-                break;
-            case 1:
                 [cell.imageView setImage:[UIImage imageNamed:@"list.png"]];
-                [cell.textLabel setText:@"List"];
-                break;
-            case 2:
-                [cell.imageView setImage:[UIImage imageNamed:@"lock.png"]];
-                [cell.textLabel setText:@"Security"];
+                [cell.textLabel setText:@"MyList"];
                 break;
         }
     }
@@ -209,10 +208,6 @@
             case 2:
                 [cell.imageView setImage:[UIImage imageNamed:@"book.png"]];
                 [cell.textLabel setText:@"About"];
-                break;
-            case 3:
-                [cell.imageView setImage:[UIImage imageNamed:@"like.png"]];
-                [cell.textLabel setText:@"Recomment to Friends"];
                 break;
         }
     }
