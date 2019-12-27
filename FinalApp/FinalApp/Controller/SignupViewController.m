@@ -29,15 +29,15 @@
     self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     float itemSize = 90;
-    UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 30, itemSize, itemSize)];
-    [img setImage:[UIImage imageNamed:@"English.png"]];
+    UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 95, itemSize, itemSize)];
+    [img setImage:[UIImage imageNamed:@"unLogin.png"]];
     [img.layer setMasksToBounds:YES];
-    [img.layer setCornerRadius:img.frame.size.height/2];
+    [img.layer setCornerRadius:20];
     
-    _user = [[UILabel alloc]initWithFrame:CGRectMake(30, 170, 100, 25)];
+    _user = [[UILabel alloc]initWithFrame:CGRectMake(30, 200, 100, 25)];
     [_user setText:@"Username"];
     
-    _pass = [[UILabel alloc]initWithFrame:CGRectMake(30, 270, 100, 25)];
+    _pass = [[UILabel alloc]initWithFrame:CGRectMake(30, 300, 100, 25)];
     [_pass setText:@"Password"];
     
     [self.view setBackgroundColor:[UIColor whiteColor]];
@@ -55,7 +55,7 @@
 -(UITextField*)username{
     if (_username == nil) {
         float len = self.view.frame.size.width - 50;
-        _username = [[UITextField alloc] initWithFrame:CGRectMake(25, 200, len, 50)];
+        _username = [[UITextField alloc] initWithFrame:CGRectMake(25, 230, len, 50)];
         _username.font = [UIFont systemFontOfSize:20];
         _username.placeholder = @"Username";
         _username.borderStyle = UITextBorderStyleRoundedRect;
@@ -68,7 +68,7 @@
 -(UITextField*)password{
     if (_password == nil) {
         float len = self.view.frame.size.width - 50;
-        _password = [[UITextField alloc] initWithFrame:CGRectMake(25, 300, len, 50)];
+        _password = [[UITextField alloc] initWithFrame:CGRectMake(25, 330, len, 50)];
         _password.font = [UIFont systemFontOfSize:20];
         _password.placeholder = @"Password";
         _password.borderStyle = UITextBorderStyleRoundedRect;
@@ -81,7 +81,7 @@
 
 -(UIButton*)button {
     if (_button == nil) {
-        _button = [[UIButton alloc] initWithFrame:CGRectMake(50, self.password.frame.origin.y + 70, self.view.frame.size.width-100, 50)];
+        _button = [[UIButton alloc] initWithFrame:CGRectMake(50, self.password.frame.origin.y + 80, self.view.frame.size.width-100, 50)];
         _button.layer.masksToBounds = YES;
         _button.layer.cornerRadius = 25;
         [_button setBackgroundColor:[UIColor blueColor]];

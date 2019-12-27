@@ -33,29 +33,25 @@
 		B386470B23B3A56A00317595 /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470223B3A56900317595 /* calendar.png */; };
 		B386470C23B3A56A00317595 /* calendar_small.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470323B3A56900317595 /* calendar_small.png */; };
 		B386470D23B3A56A00317595 /* settings.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470423B3A56900317595 /* settings.png */; };
-		B386470E23B3A56A00317595 /* tips.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B386470523B3A56A00317595 /* tips.jpg */; };
 		B386470F23B3A56A00317595 /* task1.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470623B3A56A00317595 /* task1.png */; };
 		B386471023B3A56A00317595 /* calendar1.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470723B3A56A00317595 /* calendar1.png */; };
 		B386471123B3A56A00317595 /* task.png in Resources */ = {isa = PBXBuildFile; fileRef = B386470823B3A56A00317595 /* task.png */; };
 		B386471C23B4627300317595 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B386471923B4627300317595 /* LoginViewController.m */; };
 		B386471D23B4627300317595 /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B386471B23B4627300317595 /* SignupViewController.m */; };
-		B386471F23B46A4A00317595 /* user2.png in Resources */ = {isa = PBXBuildFile; fileRef = B386471E23B46A4A00317595 /* user2.png */; };
-		B386472123B46A8200317595 /* English.png in Resources */ = {isa = PBXBuildFile; fileRef = B386472023B46A8200317595 /* English.png */; };
-		B386472323B46DBB00317595 /* myAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = B386472223B46DBB00317595 /* myAPI.m */; };
 		CE5DBDA723B5C2B8002031FD /* test.png in Resources */ = {isa = PBXBuildFile; fileRef = CE5DBDA623B5C2B8002031FD /* test.png */; };
 		CEA5743423B3A8680086BBD3 /* inBox.m in Sources */ = {isa = PBXBuildFile; fileRef = CEA5743323B3A8680086BBD3 /* inBox.m */; };
-		CEA5744023B3AB6F0086BBD3 /* home.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743623B3AB6F0086BBD3 /* home.png */; };
 		CEA5744123B3AB6F0086BBD3 /* document.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743723B3AB6F0086BBD3 /* document.png */; };
 		CEA5744223B3AB6F0086BBD3 /* plane.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743823B3AB6F0086BBD3 /* plane.png */; };
 		CEA5744323B3AB6F0086BBD3 /* list.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743923B3AB6F0086BBD3 /* list.png */; };
-		CEA5744423B3AB6F0086BBD3 /* setting.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743A23B3AB6F0086BBD3 /* setting.png */; };
-		CEA5744523B3AB6F0086BBD3 /* wechat.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743B23B3AB6F0086BBD3 /* wechat.png */; };
-		CEA5744623B3AB6F0086BBD3 /* like.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743C23B3AB6F0086BBD3 /* like.png */; };
 		CEA5744723B3AB6F0086BBD3 /* book.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743D23B3AB6F0086BBD3 /* book.png */; };
-		CEA5744823B3AB6F0086BBD3 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743E23B3AB6F0086BBD3 /* lock.png */; };
-		CEA5744923B3AB6F0086BBD3 /* timer.png in Resources */ = {isa = PBXBuildFile; fileRef = CEA5743F23B3AB6F0086BBD3 /* timer.png */; };
 		CED7D65E23B3A669002FC3F5 /* Pods-FinalApp.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 63C4EDA9A99D587379B238B0 /* Pods-FinalApp.debug.xcconfig */; };
 		CED7D65F23B3A66E002FC3F5 /* Pods-FinalApp.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 2360A5E2A288331C939E157F /* Pods-FinalApp.release.xcconfig */; };
+		CEFD6B6423B654D100609F4E /* loginIn.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6323B654D100609F4E /* loginIn.png */; };
+		CEFD6B6623B655A400609F4E /* unLogin.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6523B655A400609F4E /* unLogin.png */; };
+		CEFD6B6823B6580500609F4E /* tips.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6723B6580500609F4E /* tips.png */; };
+		CEFD6B6D23B65E8600609F4E /* 40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6A23B65E8600609F4E /* 40x40.png */; };
+		CEFD6B6E23B65E8600609F4E /* 60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6B23B65E8600609F4E /* 60x60.png */; };
+		CEFD6B6F23B65E8600609F4E /* 80x80.png in Resources */ = {isa = PBXBuildFile; fileRef = CEFD6B6C23B65E8600609F4E /* 80x80.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +115,6 @@
 		B386470223B3A56900317595 /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		B386470323B3A56900317595 /* calendar_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar_small.png; sourceTree = "<group>"; };
 		B386470423B3A56900317595 /* settings.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = settings.png; sourceTree = "<group>"; };
-		B386470523B3A56A00317595 /* tips.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = tips.jpg; sourceTree = "<group>"; };
 		B386470623B3A56A00317595 /* task1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task1.png; sourceTree = "<group>"; };
 		B386470723B3A56A00317595 /* calendar1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar1.png; sourceTree = "<group>"; };
 		B386470823B3A56A00317595 /* task.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = task.png; sourceTree = "<group>"; };
@@ -127,23 +122,19 @@
 		B386471923B4627300317595 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B386471A23B4627300317595 /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignupViewController.h; sourceTree = "<group>"; };
 		B386471B23B4627300317595 /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignupViewController.m; sourceTree = "<group>"; };
-		B386471E23B46A4A00317595 /* user2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user2.png; sourceTree = "<group>"; };
-		B386472023B46A8200317595 /* English.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = English.png; sourceTree = "<group>"; };
-		B386472223B46DBB00317595 /* myAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = myAPI.m; sourceTree = "<group>"; };
-		B386472423B46DC700317595 /* myAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = myAPI.h; sourceTree = "<group>"; };
 		CE5DBDA623B5C2B8002031FD /* test.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test.png; sourceTree = "<group>"; };
 		CEA5743323B3A8680086BBD3 /* inBox.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = inBox.m; sourceTree = "<group>"; };
 		CEA5743523B3A8820086BBD3 /* inBox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = inBox.h; sourceTree = "<group>"; };
-		CEA5743623B3AB6F0086BBD3 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
 		CEA5743723B3AB6F0086BBD3 /* document.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = document.png; sourceTree = "<group>"; };
 		CEA5743823B3AB6F0086BBD3 /* plane.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plane.png; sourceTree = "<group>"; };
 		CEA5743923B3AB6F0086BBD3 /* list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = list.png; sourceTree = "<group>"; };
-		CEA5743A23B3AB6F0086BBD3 /* setting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting.png; sourceTree = "<group>"; };
-		CEA5743B23B3AB6F0086BBD3 /* wechat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wechat.png; sourceTree = "<group>"; };
-		CEA5743C23B3AB6F0086BBD3 /* like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = like.png; sourceTree = "<group>"; };
 		CEA5743D23B3AB6F0086BBD3 /* book.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = book.png; sourceTree = "<group>"; };
-		CEA5743E23B3AB6F0086BBD3 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lock.png; sourceTree = "<group>"; };
-		CEA5743F23B3AB6F0086BBD3 /* timer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timer.png; sourceTree = "<group>"; };
+		CEFD6B6323B654D100609F4E /* loginIn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginIn.png; sourceTree = "<group>"; };
+		CEFD6B6523B655A400609F4E /* unLogin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unLogin.png; sourceTree = "<group>"; };
+		CEFD6B6723B6580500609F4E /* tips.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tips.png; sourceTree = "<group>"; };
+		CEFD6B6A23B65E8600609F4E /* 40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 40x40.png; sourceTree = "<group>"; };
+		CEFD6B6B23B65E8600609F4E /* 60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 60x60.png; sourceTree = "<group>"; };
+		CEFD6B6C23B65E8600609F4E /* 80x80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 80x80.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -214,6 +205,7 @@
 		B386468623AB6E2900317595 /* FinalApp */ = {
 			isa = PBXGroup;
 			children = (
+				CEFD6B6923B65E8600609F4E /* appIcon */,
 				B38646C123ACB66B00317595 /* assets */,
 				B38646E923B0F2D000317595 /* Model */,
 				B38646BA23ACB0C400317595 /* Controller */,
@@ -274,23 +266,18 @@
 		B38646C123ACB66B00317595 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				CEFD6B6523B655A400609F4E /* unLogin.png */,
+				CEFD6B6323B654D100609F4E /* loginIn.png */,
 				250FE9BD23B62FDD00EBF73A /* step1.png */,
 				250FE9BA23B62FDB00EBF73A /* step2.png */,
 				250FE9BB23B62FDC00EBF73A /* step3.png */,
 				250FE9BC23B62FDD00EBF73A /* step4.png */,
 				CE5DBDA623B5C2B8002031FD /* test.png */,
-				B386472023B46A8200317595 /* English.png */,
-				B386471E23B46A4A00317595 /* user2.png */,
 				CEA5743D23B3AB6F0086BBD3 /* book.png */,
+				CEFD6B6723B6580500609F4E /* tips.png */,
 				CEA5743723B3AB6F0086BBD3 /* document.png */,
-				CEA5743623B3AB6F0086BBD3 /* home.png */,
-				CEA5743C23B3AB6F0086BBD3 /* like.png */,
 				CEA5743923B3AB6F0086BBD3 /* list.png */,
-				CEA5743E23B3AB6F0086BBD3 /* lock.png */,
 				CEA5743823B3AB6F0086BBD3 /* plane.png */,
-				CEA5743A23B3AB6F0086BBD3 /* setting.png */,
-				CEA5743F23B3AB6F0086BBD3 /* timer.png */,
-				CEA5743B23B3AB6F0086BBD3 /* wechat.png */,
 				B38646FE23B3A54E00317595 /* button.png */,
 				B386470323B3A56900317595 /* calendar_small.png */,
 				B386470223B3A56900317595 /* calendar.png */,
@@ -300,7 +287,6 @@
 				B386470023B3A56900317595 /* settings1.png */,
 				B386470823B3A56A00317595 /* task.png */,
 				B386470623B3A56A00317595 /* task1.png */,
-				B386470523B3A56A00317595 /* tips.jpg */,
 			);
 			path = assets;
 			sourceTree = "<group>";
@@ -312,10 +298,18 @@
 				B38646F023B20B7D00317595 /* MyCalendar.m */,
 				B38646FB23B3450500317595 /* GridCalendarCell.h */,
 				B38646FC23B3451500317595 /* GridCalendarCell.m */,
-				B386472223B46DBB00317595 /* myAPI.m */,
-				B386472423B46DC700317595 /* myAPI.h */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		CEFD6B6923B65E8600609F4E /* appIcon */ = {
+			isa = PBXGroup;
+			children = (
+				CEFD6B6A23B65E8600609F4E /* 40x40.png */,
+				CEFD6B6B23B65E8600609F4E /* 60x60.png */,
+				CEFD6B6C23B65E8600609F4E /* 80x80.png */,
+			);
+			path = appIcon;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,22 +417,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B386470B23B3A56A00317595 /* calendar.png in Resources */,
+				CEFD6B6423B654D100609F4E /* loginIn.png in Resources */,
 				B386471123B3A56A00317595 /* task.png in Resources */,
 				CEA5744123B3AB6F0086BBD3 /* document.png in Resources */,
 				CED7D65F23B3A66E002FC3F5 /* Pods-FinalApp.release.xcconfig in Resources */,
-				CEA5744523B3AB6F0086BBD3 /* wechat.png in Resources */,
-				B386470E23B3A56A00317595 /* tips.jpg in Resources */,
-				CEA5744023B3AB6F0086BBD3 /* home.png in Resources */,
 				250FE9BF23B62FDE00EBF73A /* step3.png in Resources */,
 				B386470F23B3A56A00317595 /* task1.png in Resources */,
 				250FE9C123B62FDE00EBF73A /* step1.png in Resources */,
+				CEFD6B6E23B65E8600609F4E /* 60x60.png in Resources */,
 				250FE9C023B62FDE00EBF73A /* step4.png in Resources */,
+				CEFD6B6D23B65E8600609F4E /* 40x40.png in Resources */,
+				CEFD6B6623B655A400609F4E /* unLogin.png in Resources */,
 				B386469423AB6E2B00317595 /* LaunchScreen.storyboard in Resources */,
-				CEA5744423B3AB6F0086BBD3 /* setting.png in Resources */,
-				CEA5744623B3AB6F0086BBD3 /* like.png in Resources */,
 				B386469123AB6E2B00317595 /* Assets.xcassets in Resources */,
 				B38646FF23B3A54E00317595 /* button.png in Resources */,
-				CEA5744923B3AB6F0086BBD3 /* timer.png in Resources */,
 				B386468F23AB6E2900317595 /* Main.storyboard in Resources */,
 				B386471023B3A56A00317595 /* calendar1.png in Resources */,
 				CEA5744323B3AB6F0086BBD3 /* list.png in Resources */,
@@ -446,12 +438,11 @@
 				CED7D65E23B3A669002FC3F5 /* Pods-FinalApp.debug.xcconfig in Resources */,
 				CEA5744223B3AB6F0086BBD3 /* plane.png in Resources */,
 				B386470D23B3A56A00317595 /* settings.png in Resources */,
-				B386472123B46A8200317595 /* English.png in Resources */,
-				CEA5744823B3AB6F0086BBD3 /* lock.png in Resources */,
 				CE5DBDA723B5C2B8002031FD /* test.png in Resources */,
+				CEFD6B6823B6580500609F4E /* tips.png in Resources */,
 				B386470A23B3A56A00317595 /* send.png in Resources */,
-				B386471F23B46A4A00317595 /* user2.png in Resources */,
 				250FE9BE23B62FDE00EBF73A /* step2.png in Resources */,
+				CEFD6B6F23B65E8600609F4E /* 80x80.png in Resources */,
 				B386470C23B3A56A00317595 /* calendar_small.png in Resources */,
 				CEA5744723B3AB6F0086BBD3 /* book.png in Resources */,
 			);
@@ -504,7 +495,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				250FE9A423B604EA00EBF73A /* TutorialViewController.m in Sources */,
-				B386472323B46DBB00317595 /* myAPI.m in Sources */,
 				CEA5743423B3A8680086BBD3 /* inBox.m in Sources */,
 				B38646E723B0ED2100317595 /* SettingViewController.m in Sources */,
 				B38646F923B25B3C00317595 /* GridCalendar.m in Sources */,
