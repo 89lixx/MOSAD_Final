@@ -10,7 +10,8 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 @interface LoginViewController() <UITextFieldDelegate>
-
+@property (nonatomic, strong) UITextField* username;
+@property (nonatomic, strong) UITextField* password;
 @property (nonatomic, strong) UILabel* user;
 @property (nonatomic, strong) UILabel* pass;
 @property (nonatomic, strong) UIButton* button;
@@ -115,8 +116,6 @@
 
 -(void)login:(UIButton*)button{
     self.activity = @"";
-    NSString * name = self.username.text;
-    NSString * pwd = self.password.text;
     dispatch_group_t group = dispatch_group_create();
     dispatch_group_enter(group);
     
@@ -128,7 +127,7 @@
     
     // 设置请求体为JSON
     
-    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:name,@"name",pwd,@"pwd", nil];
+    NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.username.text,@"name",self.password.text,@"pwd", nil];
     NSError *error = nil;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:&error];
     NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
@@ -147,6 +146,8 @@
             [self shakeAnimationForView:self.button];
         }
         else {
+            self.name = self.username.text;
+            self.pwd = self.password.text;
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     });

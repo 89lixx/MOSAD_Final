@@ -81,7 +81,7 @@
 		250FE9BD23B62FDD00EBF73A /* step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step1.png; sourceTree = "<group>"; };
 		63C4EDA9A99D587379B238B0 /* Pods-FinalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalApp.debug.xcconfig"; path = "Target Support Files/Pods-FinalApp/Pods-FinalApp.debug.xcconfig"; sourceTree = "<group>"; };
 		729B684A74FD463F63D8DF55 /* libPods-FinalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B386468423AB6E2900317595 /* FinalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B386468423AB6E2900317595 /* Planning.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Planning.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B386468723AB6E2900317595 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B386468823AB6E2900317595 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B386468A23AB6E2900317595 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
@@ -195,7 +195,7 @@
 		B386468523AB6E2900317595 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B386468423AB6E2900317595 /* FinalApp.app */,
+				B386468423AB6E2900317595 /* Planning.app */,
 				B386469C23AB6E2B00317595 /* FinalAppTests.xctest */,
 				B38646A723AB6E2B00317595 /* FinalAppUITests.xctest */,
 			);
@@ -330,7 +330,7 @@
 			);
 			name = FinalApp;
 			productName = FinalApp;
-			productReference = B386468423AB6E2900317595 /* FinalApp.app */;
+			productReference = B386468423AB6E2900317595 /* Planning.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B386469B23AB6E2B00317595 /* FinalAppTests */ = {
@@ -679,14 +679,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3K56A6XQSZ;
+				DEVELOPMENT_TEAM = ZQ2Q944Q88;
 				INFOPLIST_FILE = FinalApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leo.FinalApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = leo.planning;
+				PRODUCT_NAME = Planning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -697,14 +697,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3K56A6XQSZ;
+				DEVELOPMENT_TEAM = ZQ2Q944Q88;
 				INFOPLIST_FILE = FinalApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = leo.FinalApp;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = leo.planning;
+				PRODUCT_NAME = Planning;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

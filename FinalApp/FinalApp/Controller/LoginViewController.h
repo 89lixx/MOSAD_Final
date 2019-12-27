@@ -11,8 +11,8 @@
 #import "UIKit/UIKit.h"
 
 @interface LoginViewController : UIViewController
-@property (nonatomic, strong) UITextField* username;
-@property (nonatomic, strong) UITextField* password;
+@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString* pwd;
 @property (nonatomic, strong) NSString * activity;
 @end
 
