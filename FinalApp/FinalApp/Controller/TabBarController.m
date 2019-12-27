@@ -20,7 +20,6 @@
 @property(nonatomic, strong) UIColor * lightgray;
 @property(nonatomic, strong) UIColor * blue;
 @property(nonatomic, strong) MyCalendar * myCalendar;
-@property (nonatomic, assign) BOOL isLoad;
 @end
 
 @implementation TabBarController
@@ -29,7 +28,6 @@
     [super viewDidLoad];
     
     self.title = @"Inbox";
-    self.isLoad = YES;
     self.inbox = [[inBox alloc] init];
     self.inbox.tabBarItem.title = @"task";
     self.inbox.tabBarItem.image = [[UIImage imageNamed:@"task.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -58,6 +56,7 @@
     NSLog(@"arr %@",arr);
     for(NSInteger i = 0; i < arr.count; ++ i) {
         NSArray * temp = [arr[i] componentsSeparatedByString:@":"];
+        NSLog(@"2323 %@", temp);
         NSArray * temp1 = [temp[1] componentsSeparatedByString:@","];
         [dic setObject:temp1 forKey:temp[0]];
     }
@@ -72,30 +71,27 @@
 //点击后不能直接改变selectedIndex
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     //更新数据
-    if(self.setting.signIn && self.isLoad)
+    NSString* a = self.setting.name.copy;
+    NSString* b = self.calendar.name.copy;
+    NSString* c = self.inbox.name.copy;
+    if(self.setting.signIn && (a!=b && a!=c))
     {
-        self.activityDic = [self splitActivity:self.setting.activity];
+        self.activityDic = [self splitActivity:self.setting.activity.copy];
         self.calendar.name = self.setting.name;
         self.calendar.pwd = self.setting.pwd;
         self.inbox.activity = self.activityDic;
         self.calendar.activity = self.activityDic;
         self.inbox.pwd = self.setting.pwd;
         self.inbox.name = self.setting.name;
-        self.isLoad = NO;
     }
     if([tabBar.selectedItem.title  isEqual: @"task"]) {
         self.title = @"Inbox";
-        //self.activityDic = [self splitActivity:self.setting.activity];
-        //self.inbox.activity = self.activityDic;
     }
     else if([tabBar.selectedItem.title  isEqual: @"calendar"]) {
         self.title = @"Today";
-        //self.calendar.activity = self.activityDic;
     }
     else if([tabBar.selectedItem.title  isEqual: @"settings"]) {
         self.title = @"Settings";
-        //[self.calendar.activity removeAllObjects];
-        //self.calendar.activity = self.activityDic;
     }
 }
 

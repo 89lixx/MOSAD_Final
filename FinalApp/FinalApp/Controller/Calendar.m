@@ -21,7 +21,7 @@
 
 @property(nonatomic, strong) UITableView * tableView;
 @property(nonatomic, strong) NSMutableArray * plans;
-
+@property(nonatomic, strong) UILabel * today;
 @property(nonatomic, strong) UIButton * plusButton;
 @property(nonatomic, strong) UITextView * commentText;
 @property(nonatomic, strong) UILabel * placeholder;
@@ -120,7 +120,7 @@
 
 - (UITableView *)tableView{
     if(_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 325, self.view.frame.size.width, 250) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 325, self.view.frame.size.width, 350) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
@@ -254,8 +254,8 @@
 //tableView s上面的today字样
 -(void) todayLabel {
     float y_begin = 95 + 70 + 20 + 100 + 10;
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, y_begin, self.view.frame.size.width, 30)];
-    label.backgroundColor = _lightblue;
+    self.today = [[UILabel alloc] initWithFrame:CGRectMake(0, y_begin, self.view.frame.size.width, 30)];
+    self.today.backgroundColor = _lightblue;
     
     
     UILabel * textLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 70, 30)];
@@ -263,9 +263,9 @@
     textLabel.text = @"TODAY";
     textLabel.textColor = [UIColor grayColor];
     textLabel.textAlignment = NSTextAlignmentCenter;
-    [label addSubview:textLabel];
+    [self.today addSubview:textLabel];
     
-    [self.view addSubview:label];
+    [self.view addSubview:self.today];
 }
 
 
@@ -273,14 +273,24 @@
 #pragma mark tips 消失函数
 -(void)gone:(UIButton*) button{
     NSLog(@"click!");
-    [UIView animateWithDuration:1.0 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+    [UIView animateWithDuration:0.5 delay:0.0 options:UIViewAnimationOptionCurveEaseOut animations:^{
         self.tipView.alpha = 0.0;
+        
         NSLog(@"开始动画");
     } completion:^(BOOL finished){
         self.tipView.hidden = YES;
         NSLog(@"动画结束");
     }];
+    [UIView animateWithDuration:0.5 delay:0.4 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.today.transform = CGAffineTransformTranslate(self.today.transform, 0, -110);
+        self.tableView.transform = CGAffineTransformTranslate(self.tableView.transform, 0, -110);
+    } completion:^(BOOL finished){
+
+        NSLog(@"动画结束");
+    }];
 }
+
+
 
 #pragma mark 键盘显示函数
 -(void)keyboardAppear:(UIButton*) button{
@@ -378,7 +388,7 @@
 
         NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/addActivity"];
+        NSURL * url = [NSURL URLWithString:@"http://172.18.176.201:3000/addActivity"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod:@"POST"];
 

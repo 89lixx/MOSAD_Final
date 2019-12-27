@@ -67,7 +67,7 @@
 
 - (UIImageView *)imageView{
     if(!_imageView){
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.width)];
+        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.width)];
         _imageView.image = [UIImage imageNamed:@"test.png"];
     }
     return _imageView;
@@ -90,18 +90,17 @@
     return self.dates.count;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-//    UIView * myView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 10)];
-//    myView.backgroundColor = self.lightblue;
+
     NSString * year = [self.dates[section] substringToIndex:4];
     NSString * temp = [self.dates[section] substringFromIndex:4];
     NSString * month = [temp substringToIndex:2];
     NSString * day = [temp substringFromIndex:2];
-//    NSString * day = self.dates[section];
+
     UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, 20)];
     label.text = [NSString stringWithFormat:@"  %@年%@月%@日",year,month,day];
     label.textColor = [UIColor grayColor];
     label.font = [UIFont systemFontOfSize:17];
-//    label.textAlignment = NSTextAlignmentCenter;
+
                                                                 
     label.backgroundColor = self.lightblue;
     return label;
@@ -119,7 +118,7 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-#pragma mark 侧滑出现更多按钮 按钮可以加很多个 在按钮的block回调里面处理事件就好了
+#pragma mark 测滑出现删除按钮
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
@@ -128,6 +127,7 @@
         NSString * ac = arr[indexPath.row];
         [arr removeObjectAtIndex:indexPath.row];
         [self.activity setObject:arr forKey:self.dates[indexPath.section]];
+        
         //2.更新UI
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         //3.更新后端
@@ -136,11 +136,9 @@
         
         NSURLSessionConfiguration * defaultConfigObject = [NSURLSessionConfiguration defaultSessionConfiguration];
         NSURLSession * delegateFreeSession = [NSURLSession sessionWithConfiguration:defaultConfigObject delegate:self delegateQueue:[NSOperationQueue mainQueue]];
-        NSURL * url = [NSURL URLWithString:@"http://127.0.0.1:3000/delActivity"];
+        NSURL * url = [NSURL URLWithString:@"http://172.18.176.201:3000/delActivity"];
         NSMutableURLRequest * urlRequest = [NSMutableURLRequest requestWithURL:url];
         [urlRequest setHTTPMethod:@"POST"];
-        
-        // 设置请求体为JSON
         
         NSDictionary * dic = [[NSDictionary alloc] initWithObjectsAndKeys:self.name,@"name",self.pwd,@"pwd",self.dates[indexPath.section],@"date", ac,@"activity", nil];
         NSError *error = nil;
@@ -151,7 +149,6 @@
             if(error == nil) {
                 self.response = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
                 NSLog(@"response %@",self.response);
-                
             }
             dispatch_group_leave(group);
         }];
@@ -165,8 +162,8 @@
     return self.dates[section];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    NSArray * arr = [self.activity objectForKey:self.dates[section]];
-    return arr.count;
+    NSArray * keyArr = [self.activity objectForKey:self.dates[section]];
+    return keyArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];

@@ -10,9 +10,6 @@
 #import "MyCalendar.h"
 @interface MyCalendar ()
 @property(nonatomic, strong) NSCalendar * calendar;
-//@property(nonatomic, assign) NSInteger day;
-//@property(nonatomic, assign) NSInteger month;
-//@property(nonatomic, assign) NSInteger year;
 @property(nonatomic, assign) NSInteger weekDay; //当前星期几
 @property(nonatomic, strong) NSMutableArray * dayArray;
 

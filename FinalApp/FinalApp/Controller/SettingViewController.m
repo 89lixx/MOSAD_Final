@@ -67,6 +67,7 @@
         }
     }
     NSLog(@"current user:%@.", self.username.text);
+    NSLog(@"%@",self.login.activity);
     
     
     
