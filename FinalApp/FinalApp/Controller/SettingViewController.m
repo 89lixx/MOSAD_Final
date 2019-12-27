@@ -64,6 +64,7 @@
             }
         }
     }
+    NSLog(@"%@",self.login.activity);
     
     
     
