@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		250FE9A423B604EA00EBF73A /* TutorialViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 250FE9A323B604EA00EBF73A /* TutorialViewController.m */; };
+		250FE9BE23B62FDE00EBF73A /* step2.png in Resources */ = {isa = PBXBuildFile; fileRef = 250FE9BA23B62FDB00EBF73A /* step2.png */; };
+		250FE9BF23B62FDE00EBF73A /* step3.png in Resources */ = {isa = PBXBuildFile; fileRef = 250FE9BB23B62FDC00EBF73A /* step3.png */; };
+		250FE9C023B62FDE00EBF73A /* step4.png in Resources */ = {isa = PBXBuildFile; fileRef = 250FE9BC23B62FDD00EBF73A /* step4.png */; };
+		250FE9C123B62FDE00EBF73A /* step1.png in Resources */ = {isa = PBXBuildFile; fileRef = 250FE9BD23B62FDD00EBF73A /* step1.png */; };
 		40469BBFF6BAC7BB7B835710 /* libPods-FinalApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 729B684A74FD463F63D8DF55 /* libPods-FinalApp.a */; };
 		B386468923AB6E2900317595 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B386468823AB6E2900317595 /* AppDelegate.m */; };
 		B386468C23AB6E2900317595 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B386468B23AB6E2900317595 /* ViewController.m */; };
@@ -72,6 +77,12 @@
 
 /* Begin PBXFileReference section */
 		2360A5E2A288331C939E157F /* Pods-FinalApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalApp.release.xcconfig"; path = "Target Support Files/Pods-FinalApp/Pods-FinalApp.release.xcconfig"; sourceTree = "<group>"; };
+		250FE9A223B6044400EBF73A /* TutorialViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TutorialViewController.h; sourceTree = "<group>"; };
+		250FE9A323B604EA00EBF73A /* TutorialViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TutorialViewController.m; sourceTree = "<group>"; };
+		250FE9BA23B62FDB00EBF73A /* step2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step2.png; sourceTree = "<group>"; };
+		250FE9BB23B62FDC00EBF73A /* step3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step3.png; sourceTree = "<group>"; };
+		250FE9BC23B62FDD00EBF73A /* step4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step4.png; sourceTree = "<group>"; };
+		250FE9BD23B62FDD00EBF73A /* step1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = step1.png; sourceTree = "<group>"; };
 		63C4EDA9A99D587379B238B0 /* Pods-FinalApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FinalApp.debug.xcconfig"; path = "Target Support Files/Pods-FinalApp/Pods-FinalApp.debug.xcconfig"; sourceTree = "<group>"; };
 		729B684A74FD463F63D8DF55 /* libPods-FinalApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-FinalApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B386468423AB6E2900317595 /* FinalApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinalApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,6 +265,8 @@
 				B38646FA23B25B4900317595 /* GridCalendar.h */,
 				CEA5743323B3A8680086BBD3 /* inBox.m */,
 				CEA5743523B3A8820086BBD3 /* inBox.h */,
+				250FE9A223B6044400EBF73A /* TutorialViewController.h */,
+				250FE9A323B604EA00EBF73A /* TutorialViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -261,6 +274,10 @@
 		B38646C123ACB66B00317595 /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				250FE9BD23B62FDD00EBF73A /* step1.png */,
+				250FE9BA23B62FDB00EBF73A /* step2.png */,
+				250FE9BB23B62FDC00EBF73A /* step3.png */,
+				250FE9BC23B62FDD00EBF73A /* step4.png */,
 				CE5DBDA623B5C2B8002031FD /* test.png */,
 				B386472023B46A8200317595 /* English.png */,
 				B386471E23B46A4A00317595 /* user2.png */,
@@ -412,7 +429,10 @@
 				CEA5744523B3AB6F0086BBD3 /* wechat.png in Resources */,
 				B386470E23B3A56A00317595 /* tips.jpg in Resources */,
 				CEA5744023B3AB6F0086BBD3 /* home.png in Resources */,
+				250FE9BF23B62FDE00EBF73A /* step3.png in Resources */,
 				B386470F23B3A56A00317595 /* task1.png in Resources */,
+				250FE9C123B62FDE00EBF73A /* step1.png in Resources */,
+				250FE9C023B62FDE00EBF73A /* step4.png in Resources */,
 				B386469423AB6E2B00317595 /* LaunchScreen.storyboard in Resources */,
 				CEA5744423B3AB6F0086BBD3 /* setting.png in Resources */,
 				CEA5744623B3AB6F0086BBD3 /* like.png in Resources */,
@@ -431,6 +451,7 @@
 				CE5DBDA723B5C2B8002031FD /* test.png in Resources */,
 				B386470A23B3A56A00317595 /* send.png in Resources */,
 				B386471F23B46A4A00317595 /* user2.png in Resources */,
+				250FE9BE23B62FDE00EBF73A /* step2.png in Resources */,
 				B386470C23B3A56A00317595 /* calendar_small.png in Resources */,
 				CEA5744723B3AB6F0086BBD3 /* book.png in Resources */,
 			);
@@ -482,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				250FE9A423B604EA00EBF73A /* TutorialViewController.m in Sources */,
 				B386472323B46DBB00317595 /* myAPI.m in Sources */,
 				CEA5743423B3A8680086BBD3 /* inBox.m in Sources */,
 				B38646E723B0ED2100317595 /* SettingViewController.m in Sources */,

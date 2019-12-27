@@ -11,6 +11,7 @@
 #import "TabBarController.h"
 #import "LoginViewController.h"
 #import "SignupViewController.h"
+#import "TutorialViewController.h"
 @interface SettingViewController() <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIView* userView;
@@ -173,6 +174,12 @@
     }
     else if (indexPath.section == 1){
         [self.tabBarController setSelectedIndex:0];
+    }
+    else if (indexPath.section == 2) {
+        if (indexPath.row == 0) {
+            TutorialViewController* tu = [[TutorialViewController alloc] init];
+            [self.navigationController pushViewController:tu animated:YES];
+        }
     }
 }
 
