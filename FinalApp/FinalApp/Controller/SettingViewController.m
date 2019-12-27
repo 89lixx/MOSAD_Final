@@ -46,16 +46,17 @@
 - (void)viewDidAppear:(BOOL)animated{
     NSLog(@"load view");
     if(self.login.username.text.length != 0) {
-        if(self.username.text.length == 0) {
-            self.username.text = self.login.username.text;
-            self.signIn = YES;
-            self.activity = self.login.activity;
-            self.name = self.login.username.text;
-            self.pwd = self.login.password.text;
-        }
-        else {
+//        if(self.username.text.length == 0) {
+//            self.username.text = self.login.username.text;
+//            self.signIn = YES;
+//            self.activity = self.login.activity;
+//            self.name = self.login.username.text;
+//            self.pwd = self.login.password.text;
+//            NSLog(@"%@", self.username.text);
+//        }
+//        else {
             if([self.username.text isEqualToString:self.login.username.text]){
-                self.signIn = NO;
+//                self.signIn = NO;
             }
             else {
                 self.username.text = self.login.username.text;
@@ -63,10 +64,14 @@
                 self.activity = self.login.activity;
                 self.name = self.login.username.text;
                 self.pwd = self.login.password.text;
+                UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+                [cell.textLabel setText:@"Log Out"];
+                [cell.textLabel setTextColor:[UIColor redColor]];
             }
-        }
+//        }
     }
     NSLog(@"current user:%@.", self.username.text);
+    NSLog(@"signIn: %d", self.signIn);
     NSLog(@"%@",self.login.activity);
     
     
@@ -151,10 +156,23 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0 && indexPath.row == 1) {
-        NSLog(@"denglu");
-        self.login = [[LoginViewController alloc] init];
-        self.signup = [[SignupViewController alloc] init];
-        [self.navigationController pushViewController:self.login animated:YES];
+        NSLog(@"login");
+        if ([self.username.text isEqualToString:@"Username"]) {
+            self.login = [[LoginViewController alloc] init];
+            self.signup = [[SignupViewController alloc] init];
+            [self.navigationController pushViewController:self.login animated:YES];
+        }
+        else {
+            [self.username setText:@"Username"];
+            self.signIn = NO;
+            UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [cell.textLabel setText:@"Login"];
+            [cell.textLabel setTextColor:[UIColor blueColor]];
+            self.login.username.text = @"Username";
+        }
+    }
+    else if (indexPath.section == 1){
+        [self.tabBarController setSelectedIndex:0];
     }
 }
 

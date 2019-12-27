@@ -74,7 +74,7 @@
     NSString* a = self.setting.name.copy;
     NSString* b = self.calendar.name.copy;
     NSString* c = self.inbox.name.copy;
-    if(self.setting.signIn && (a!=b && a!=c))
+    if(self.setting.signIn && (a!=b || a!=c))
     {
         self.activityDic = [self splitActivity:self.setting.activity.copy];
         self.calendar.name = self.setting.name;
