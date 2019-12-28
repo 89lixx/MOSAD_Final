@@ -12,6 +12,8 @@
 #import "LoginViewController.h"
 #import "SignupViewController.h"
 #import "TutorialViewController.h"
+#import "AboutViewController.h"
+#import "Suggestion.h"
 @interface SettingViewController() <UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic, strong) UITableView* tableView;
 @property (nonatomic, strong) UIView* userView;
@@ -57,7 +59,7 @@
                 self.name = self.login.name;
                 self.pwd = self.login.pwd;
                 UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
-                [cell.textLabel setText:@"Log Out"];
+                [cell.textLabel setText:@"Log out"];
                 [cell.textLabel setTextColor:[UIColor redColor]];
             }
 //        }
@@ -148,14 +150,15 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     if (indexPath.section == 0 && indexPath.row == 1) {
-        NSLog(@"login");
         if ([self.username.text isEqualToString:@"Username"]) {
+            NSLog(@"login");
             self.login = [[LoginViewController alloc] init];
             self.signup = [[SignupViewController alloc] init];
             [self.navigationController pushViewController:self.login animated:YES];
         }
         else {
             [self.username setText:@"Username"];
+            NSLog(@"logout");
             self.signIn = NO;
             UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell.textLabel setText:@"Login"];
@@ -164,12 +167,22 @@
         }
     }
     else if (indexPath.section == 1){
+        [self.tabBarController tabBar:self.tabBarController.tabBar didSelectItem:self.tabBarController.tabBar.items.firstObject];
         [self.tabBarController setSelectedIndex:0];
     }
     else if (indexPath.section == 2) {
         if (indexPath.row == 0) {
             TutorialViewController* tu = [[TutorialViewController alloc] init];
             [self.navigationController pushViewController:tu animated:YES];
+        }
+        else if (indexPath.row == 2) {
+            AboutViewController* about = [[AboutViewController alloc] init];
+            [self.navigationController pushViewController:about animated:YES];
+        }
+        else {
+            Suggestion* sug = [[Suggestion alloc] init];
+            sug.username = self.username.text;
+            [self.navigationController pushViewController:sug animated:YES];
         }
     }
 }
@@ -197,7 +210,7 @@
                 [cell.textLabel setTextColor:[UIColor blueColor]];
             }
             else {
-                [cell.textLabel setText:@"Log Out"];
+                [cell.textLabel setText:@"Log out"];
                 [cell.textLabel setTextColor:[UIColor redColor]];
             }
         }
