@@ -40,6 +40,7 @@
     self.blue = [UIColor colorWithRed:86.0/255 green:129.0/255 blue:236.0/255 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = self.blue;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.lightgray = [UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1.0];
     self.lightblue = [UIColor colorWithRed:222.0/255 green:229.0/255 blue:251.0/255 alpha:1.0];
     self.view.backgroundColor = self.lightgray;
@@ -106,11 +107,12 @@
 
 - (UIButton *)plusButton{
     if(!_plusButton){
-        _plusButton = [[UIButton alloc] initWithFrame:CGRectMake(330, 620, 50, 50)];
+        _plusButton = [[UIButton alloc] initWithFrame:CGRectMake(340, 620, 50, 50)];
         _plusButton.backgroundColor = [UIColor whiteColor];
         
         UIImageView * imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 50, 50)];
         imageView.image = [UIImage imageNamed:@"button.png"];
+        imageView.backgroundColor = _lightgray;
         [_plusButton addSubview: imageView];
         [_plusButton addTarget:self action:@selector(keyboardAppear:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -222,16 +224,16 @@
     _tipView.backgroundColor = _lightblue;
     _tipView.layer.cornerRadius = 5.0;
     
-    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(100, 0, _tipView.frame.size.width-120, 50)];
+    UILabel * label = [[UILabel alloc] initWithFrame:CGRectMake(80, 5, _tipView.frame.size.width-120, 50)];
     label.lineBreakMode = NSLineBreakByWordWrapping;
     label.numberOfLines = 0;
     label.text = @"You can set dates for tasks and check what needs to do on each day in Calendar";
     label.font = [UIFont systemFontOfSize:14];
     
     //左侧画图片
-    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(20, 10, 50, 50)];
+    UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 50, 50)];
 //    imgView.backgroundColor = [UIColor redColor];
-    imgView.image = [UIImage imageNamed:@"tips.jpg"];
+    imgView.image = [UIImage imageNamed:@"tips.png"];
     
     
     //右下角“got it” button

@@ -46,25 +46,16 @@
 }
 - (void)viewDidAppear:(BOOL)animated{
     NSLog(@"load view");
-    if(self.login.username.text.length != 0) {
-//        if(self.username.text.length == 0) {
-//            self.username.text = self.login.username.text;
-//            self.signIn = YES;
-//            self.activity = self.login.activity;
-//            self.name = self.login.username.text;
-//            self.pwd = self.login.password.text;
-//            NSLog(@"%@", self.username.text);
-//        }
-//        else {
-            if([self.username.text isEqualToString:self.login.username.text]){
+    if(self.login.name.length != 0) {
+            if([self.username.text isEqualToString:self.login.name]){
 //                self.signIn = NO;
             }
             else {
-                self.username.text = self.login.username.text;
+                self.username.text = self.login.name;
                 self.signIn = YES;
                 self.activity = self.login.activity;
-                self.name = self.login.username.text;
-                self.pwd = self.login.password.text;
+                self.name = self.login.name;
+                self.pwd = self.login.pwd;
                 UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
                 [cell.textLabel setText:@"Log Out"];
                 [cell.textLabel setTextColor:[UIColor redColor]];
@@ -94,9 +85,9 @@
         
         float itemSize = 100;
         UIImageView * img = [[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-itemSize/2, 50, itemSize, itemSize)];
-        [img setImage:[UIImage imageNamed:@"English.png"]];
+        [img setImage:[UIImage imageNamed:@"loginIn.png"]];
         [img.layer setMasksToBounds:YES];
-        [img.layer setCornerRadius:img.frame.size.height/2];
+        [img.layer setCornerRadius:20];
         
         float len = 200;
         self.username = [[UILabel alloc] initWithFrame:CGRectMake(self.view.frame.size.width/2-len/2, 80+itemSize, len, 25)];
@@ -107,8 +98,8 @@
         [_userView addSubview:img];
         [_userView addSubview:_username];
     }
-    if(self.login.username.text.length != 0) {
-        self.username.text = self.login.username.text;
+    if(self.login.name.length != 0) {
+        self.username.text = self.login.name;
         [_username addSubview:_username];
     }
     return _userView;
@@ -169,7 +160,7 @@
             UITableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
             [cell.textLabel setText:@"Login"];
             [cell.textLabel setTextColor:[UIColor blueColor]];
-            self.login.username.text = @"Username";
+            self.login.name = @"Username";
         }
     }
     else if (indexPath.section == 1){

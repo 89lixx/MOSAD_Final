@@ -25,27 +25,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.flag = NO;
-    self.del = NO;
+    self.flag = YES;
     self.activity = [[NSMutableDictionary alloc] init];
     self.blue = [UIColor colorWithRed:86.0/255 green:129.0/255 blue:236.0/255 alpha:1.0];
     self.navigationController.navigationBar.barTintColor = self.blue;
     self.navigationController.navigationBar.barStyle = UIBarStyleBlack;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
     self.lightgray = [UIColor colorWithRed:245.0/255 green:246.0/255 blue:247.0/255 alpha:1.0];
     self.lightblue = [UIColor colorWithRed:222.0/255 green:229.0/255 blue:251.0/255 alpha:1.0];
     
-    self.view.backgroundColor = self.lightgray;
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.imageView];
+    self.view.backgroundColor = [UIColor whiteColor];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    if(!self.flag){
-        [self.view addSubview:self.imageView];
-        self.view.backgroundColor = [UIColor whiteColor];
+    NSString *unLogin = @"UserName";
+    NSLog(@"%@",self.name);
+    if(self.name == unLogin)
+    {
+        self.flag = NO;
     }
-    NSLog(@"name %@",self.name);
     if(self.name.length != 0) {
-        self.flag = YES;
+        
         NSArray *arr = [self.activity allKeys];
         
         self.dates = [arr sortedArrayWithOptions:NSSortStable usingComparator:
@@ -59,16 +61,20 @@
                         return NSOrderedAscending;
                     }
         }];
-        self.view.backgroundColor = self.lightgray;
+
         
         [self.imageView removeFromSuperview];
         [self.tableView reloadData];
+        if(!self.flag){
+            [self.view addSubview:self.imageView];
+            self.flag = YES;
+        }
     }
 }
 
 - (UIImageView *)imageView{
     if(!_imageView){
-        _imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 100, self.view.frame.size.width, self.view.frame.size.width)];
+        _imageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
         _imageView.image = [UIImage imageNamed:@"test.png"];
     }
     return _imageView;
@@ -80,8 +86,7 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         [_tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
-        
-        [_tableView setSeparatorStyle:UITableViewCellSeparatorStyleNone];
+
     }
     
     return _tableView;
@@ -104,11 +109,6 @@
     
                                                                 
     label.backgroundColor = self.lightblue;
-    
-    if(section == _num)
-    {
-        self.delLabel = label;
-    }
     return label;
 }
 
@@ -123,7 +123,7 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-#pragma mark 测滑出现删除按钮
+//测滑出现删除按钮
 -(NSArray *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewRowAction *deleteRowAction = [UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
@@ -166,7 +166,6 @@
         [dataTask resume];
         
     }];
-    self.del = YES;
     return @[deleteRowAction];
 }
 
@@ -181,6 +180,7 @@
     UITableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     NSArray * arr = [self.activity objectForKey:self.dates[indexPath.section]];
     cell.textLabel.text = arr[indexPath.row];
+    
     return cell;
 }
 

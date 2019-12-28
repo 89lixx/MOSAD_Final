@@ -61,11 +61,6 @@
     return dic;
 }
 
--(NSMutableDictionary*)getDic:(NSMutableDictionary*)dic{
-    NSMutableDictionary * res = [[NSMutableDictionary alloc] init];
-    res = dic;
-    return res;
-}
 //点击后不能直接改变selectedIndex
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item{
     //更新数据
@@ -87,8 +82,8 @@
         self.activityDic = [[NSMutableDictionary alloc] init];
         self.calendar.name = @"UserName";
         self.calendar.pwd = nil;
-        self.inbox.activity = [[NSMutableDictionary alloc] init];
-        self.calendar.activity = [[NSMutableDictionary alloc] init];
+        self.inbox.activity = nil;
+        self.calendar.activity = nil;
         self.inbox.pwd = nil;
         self.inbox.name = @"UserName";
     }
